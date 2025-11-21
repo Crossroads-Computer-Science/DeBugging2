@@ -30,8 +30,9 @@
             fetch('/question-data')
                 .then(function(response) { return response.json(); })
                 .then(function(data) {
-                    questions = data;
-                    
+                    console.log(data);
+                    questions = data.questions;
+                    console.log(questions);
                     var container = document.getElementById('questions');
                     container.innerHTML = '';
                     

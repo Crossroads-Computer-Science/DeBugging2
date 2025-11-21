@@ -48,19 +48,20 @@ def question_data():
         question: str
         options: List[str]
         correct: int
+        
+    class QuizQuestionsList(BaseModel):
+        questions: List[QuizQuestions]
 
     response = client.responses.parse(
         model="gpt-4o-2024-08-06",
         input=[
-            {"role": "system", "content": "Create exactly 3 multiple choice quiz questions. Return them as a JSON array."},
-            {"role": "user", "content": "Create 3 science quiz questions as a JSON array."},
+            {"role": "system", "content": "Create exactly 3 multiple choice quiz questions."},
+            {"role": "user", "content": "Topic: science."},
         ],
-        text_format=QuizQuestions,
+        text_format=QuizQuestionsList,
     )
-    
-    text = response.output_text.strip()
-    questions = json.loads(text)
-    return jsonify(questions)
+    print(response.output_text)
+    return response.output_text
 
 @app.route("/flashcard-data")
 def flashcard_data():
