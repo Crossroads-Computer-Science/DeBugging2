@@ -52,26 +52,14 @@ def question_data():
     response = client.responses.parse(
         model="gpt-4o-2024-08-06",
         input=[
-            {"role": "system", "content": "Create exactly 3 multiple choice quiz questions on a topic of the user's choice."},
-            {"role": "user", "content": "The topic is science."},
+            {"role": "system", "content": "Create exactly 3 multiple choice quiz questions. Return them as a JSON array."},
+            {"role": "user", "content": "Create 3 science quiz questions as a JSON array."},
         ],
         text_format=QuizQuestions,
     )
     
-    text = response.output_text
-    questions = []
-    depth = 0
-    start = 0
-    for i in range(len(text)):
-        if text[i] == '{':
-            if depth == 0:
-                start = i
-            depth += 1
-        elif text[i] == '}':
-            depth -= 1
-            if depth == 0:
-                questions.append(json.loads(text[start:i+1]))
-    
+    text = response.output_text.strip()
+    questions = json.loads(text)
     return jsonify(questions)
 
 @app.route("/flashcard-data")
