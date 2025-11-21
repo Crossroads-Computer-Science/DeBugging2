@@ -22,5 +22,19 @@ Because we are using the OpenAI API, and an environment variable in this repo, w
 
 >`pip install openai dotenv`
 
-Copy 
+Copy the .env file from your Flask practice site into the root of this folder -> next to your app.py file. 
+
 Now try running the site by having Visual Studio run your app.py file. 
+
+# Debugging Exercise
+
+This site contains a host of errors in the JavaScript code.  When debugging JS, it is helpful to use the developer tools in your browser to view the errors in the console. 
+
+Open DevTools 
+> Mac: Cmd + Option + I 
+> Windows/Linux: F12 or Ctrl + Shift + I
+
+When you find a bug, you should: 
+1. Change that line into a comment to show the error
+2. Correct the line of code so that the page works properly
+
